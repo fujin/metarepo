@@ -29,7 +29,10 @@ require 'resque'
 
 class Metarepo
   class RestAPI < Sinatra::Base
-
+    configure :production, :development do
+      enable :logging
+    end
+    
     def serialize(data)
       Yajl::Encoder.encode(data)
     end
